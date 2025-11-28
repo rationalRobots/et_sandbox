@@ -5,10 +5,95 @@
 		}
 	],
 	"settings": {
+		// ** Project Configuration **
+        "project":
+        {
+            "device-serial":    "",
+        },
+        "STM32VSCodeExtension.cubeCLT.path": "c:/ST/STM32CubeCLT_1.20.0",
 
-		"STM32VSCodeExtension.cubeCLT.path": "/opt/st/stm32cubeclt_1.19.0",
-		"terminal.integrated.env.linux": {
-			"PATH": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin:${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin:${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin:${env:PATH}"
-		}
+        // ** VSCode Configuration **
+        "files.associations": {
+            "*.h": "c",
+            "*.c": "c",
+            "*.h.in": "c"
+        },
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "terminal.integrated.defaultProfile.windows": "Git Bash",
+        "git.autofetch": true,
+
+        // ** VSCode Extension Configuration **
+
+        // * jkiviluoto.tws
+        "tws.highlightTrailingWhiteSpace": true,
+        "tws.trimOnSave": false,
+
+        // * Microsoft's CMake
+        "cmake.configureOnOpen": true,
+        "cmake.ignoreCMakeListsMissing": false,
+        "cmake.useCMakePresets": "always",
+        "cmake.buildDirectory": "${workspaceFolder}/build",
+
+        // * Microsoft's C++
+        "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+        "C_Cpp.codeAnalysis.runAutomatically": true,
+        "C_Cpp.codeAnalysis.clangTidy.path": "C:/Program Files/LLVM/bin/clang-tidy",
+        "C_Cpp.codeAnalysis.clangTidy.args": [
+            "-extra-arg=-I${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/include"
+        ],
+
+        // * Marus Debug integration.
+        "cortex-debug.armToolchainPrefix":          "arm-none-eabi",
+        "cortex-debug.armToolchainPath":            "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/",
+        "cortex-debug.stlinkPath":                  "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
+        "cortex-debug.stm32cubeprogrammer":         "${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin",
+        "cortex-debug.gdbPath":                     "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
+        "cortex-debug.liveWatchRefreshRate":        250,
+        "cortex-debug.enableTelemetry":             false,
+        "cortex-debug.variableUseNaturalFormat":    false,
+
+        // * Red hat
+        "redhat.telemetry.enabled": false,
+        "peacock.color": "#00aa22",
+
+        // * Pytest
+        "python.testing.pytestPath": "${workspaceFolder}/.venv/Scripts/pytest.exe",
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": [
+
+        ],
+
+        // * Formatting
+        "files.trimTrailingWhitespace": true,
+        "files.trimFinalNewlines": true,
+        "[python]": {
+            "editor.defaultFormatter": "ms-python.flake8",
+        },
+        "[xml]": {
+            "editor.defaultFormatter": "redhat.vscode-xml"
+        },
+
+        // * Workspace
+        "workbench.colorCustomizations": {
+            "activityBar.activeBackground": "#6b700b",
+            "activityBar.background": "#6b700b",
+            "activityBar.foreground": "#15202b",
+            "activityBar.inactiveForeground": "#15202b99",
+            "activityBarBadge.background": "#7f60ff",
+            "activityBarBadge.foreground": "#e7e7e7",
+            "commandCenter.border": "#e7e7e799",
+            "sash.hoverBorder": "#60700b",
+            "statusBar.background": "#566900",
+            "statusBar.foreground": "#e7e7e7",
+            "statusBarItem.hoverBackground": "#6b700b",
+            "statusBarItem.remoteBackground": "#566900",
+            "statusBarItem.remoteForeground": "#e7e7e7",
+            "titleBar.activeBackground": "#566900",
+            "titleBar.activeForeground": "#e7e7e7",
+            "titleBar.inactiveBackground": "#56690099",
+            "titleBar.inactiveForeground": "#e7e7e799"
+        },
+        "search.useIgnoreFiles": false
 	}
 }
