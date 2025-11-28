@@ -1,5 +1,57 @@
 {
-    "terminal.integrated.env.linux": {
-        "PATH": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin:${env:PATH}"
-    }
+    // ** VSCode Configuration **
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c",
+        "*.h.in": "c"
+    },
+
+    // * Formatting
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+
+    // * jkiviluoto.tws
+    "tws.highlightTrailingWhiteSpace": true,
+    "tws.trimOnSave": false,
+
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.flake8",
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+
+    // * Microsoft's C++
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.codeAnalysis.runAutomatically": true,
+    "C_Cpp.codeAnalysis.clangTidy.path": "C:/Program Files/LLVM/bin/clang-tidy",
+    "C_Cpp.codeAnalysis.clangTidy.args": [
+        "-extra-arg=-I${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/include"
+    ],
+
+    // * STM32 VSCode Extension
+    "STM32VSCodeExtension.cubeCLT.path": "c:/ST/STM32CubeCLT_1.20.0",
+
+    // * Marus Debug integration.
+    "cortex-debug.armToolchainPrefix":          "arm-none-eabi",
+    "cortex-debug.armToolchainPath":            "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/",
+    "cortex-debug.stlinkPath":                  "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
+    "cortex-debug.stm32cubeprogrammer":         "${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin",
+    "cortex-debug.gdbPath":                     "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
+    "cortex-debug.liveWatchRefreshRate":        250,
+    "cortex-debug.enableTelemetry":             false,
+    "cortex-debug.variableUseNaturalFormat":    false,
+
+    // * Microsoft's CMake
+    "cmake.configureOnOpen": true,
+    "cmake.ignoreCMakeListsMissing": false,
+    "cmake.useCMakePresets": "always",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+
+    // * Red hat
+    "redhat.telemetry.enabled": false,
+
 }

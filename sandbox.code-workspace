@@ -1,80 +1,31 @@
 {
 	"folders": [
-		{
-			"path": "."
-		}
-	],
+        {
+            "path": "."
+        },
+        {
+            "path": "external/utils/trace_log",
+            "hide": true
+        }
+    ],
 	"settings": {
 		// ** Project Configuration **
         "project":
         {
             "device-serial":    "",
         },
-        "STM32VSCodeExtension.cubeCLT.path": "c:/ST/STM32CubeCLT_1.20.0",
 
-        // ** VSCode Configuration **
-        "files.associations": {
-            "*.h": "c",
-            "*.c": "c",
-            "*.h.in": "c"
-        },
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
         "terminal.integrated.defaultProfile.windows": "Git Bash",
         "git.autofetch": true,
-
-        // ** VSCode Extension Configuration **
-
-        // * jkiviluoto.tws
-        "tws.highlightTrailingWhiteSpace": true,
-        "tws.trimOnSave": false,
-
-        // * Microsoft's CMake
-        "cmake.configureOnOpen": true,
-        "cmake.ignoreCMakeListsMissing": false,
-        "cmake.useCMakePresets": "always",
-        "cmake.buildDirectory": "${workspaceFolder}/build",
-
-        // * Microsoft's C++
-        "C_Cpp.codeAnalysis.clangTidy.enabled": true,
-        "C_Cpp.codeAnalysis.runAutomatically": true,
-        "C_Cpp.codeAnalysis.clangTidy.path": "C:/Program Files/LLVM/bin/clang-tidy",
-        "C_Cpp.codeAnalysis.clangTidy.args": [
-            "-extra-arg=-I${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/include"
-        ],
-
-        // * Marus Debug integration.
-        "cortex-debug.armToolchainPrefix":          "arm-none-eabi",
-        "cortex-debug.armToolchainPath":            "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/",
-        "cortex-debug.stlinkPath":                  "${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin/ST-LINK_gdbserver",
-        "cortex-debug.stm32cubeprogrammer":         "${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin",
-        "cortex-debug.gdbPath":                     "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin/arm-none-eabi-gdb",
-        "cortex-debug.liveWatchRefreshRate":        250,
-        "cortex-debug.enableTelemetry":             false,
-        "cortex-debug.variableUseNaturalFormat":    false,
-
-        // * Red hat
-        "redhat.telemetry.enabled": false,
-        "peacock.color": "#00aa22",
 
         // * Pytest
         "python.testing.pytestPath": "${workspaceFolder}/.venv/Scripts/pytest.exe",
         "python.testing.pytestEnabled": true,
-        "python.testing.pytestArgs": [
-
-        ],
-
-        // * Formatting
-        "files.trimTrailingWhitespace": true,
-        "files.trimFinalNewlines": true,
-        "[python]": {
-            "editor.defaultFormatter": "ms-python.flake8",
-        },
-        "[xml]": {
-            "editor.defaultFormatter": "redhat.vscode-xml"
-        },
+        "python.testing.pytestArgs": [],
 
         // * Workspace
+        "peacock.color": "#6b700b",
+
         "workbench.colorCustomizations": {
             "activityBar.activeBackground": "#6b700b",
             "activityBar.background": "#6b700b",
