@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+
+		"STM32VSCodeExtension.cubeCLT.path": "/opt/st/stm32cubeclt_1.19.0",
+		"terminal.integrated.env.linux": {
+			"PATH": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin:${config:STM32VSCodeExtension.cubeCLT.path}/STM32CubeProgrammer/bin:${config:STM32VSCodeExtension.cubeCLT.path}/STLink-gdb-server/bin:${env:PATH}"
+		}
+	}
+}

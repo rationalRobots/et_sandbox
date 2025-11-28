@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.env.linux": {
+        "PATH": "${config:STM32VSCodeExtension.cubeCLT.path}/GNU-tools-for-STM32/bin:${env:PATH}"
+    }
+}
