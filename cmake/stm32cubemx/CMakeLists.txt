@@ -2,17 +2,9 @@ cmake_minimum_required(VERSION 3.22)
 # Enable CMake support for ASM and C languages
 enable_language(C ASM)
 # STM32CubeMX generated symbols (macros)
-set(MX_Defines_Syms 
-	USE_FULL_LL_DRIVER 
-	USE_FULL_ASSERT=1U 
-	HSE_VALUE=24000000 
-	HSE_STARTUP_TIMEOUT=100 
-	LSE_STARTUP_TIMEOUT=5000 
-	LSE_VALUE=32768 
-	EXTERNAL_CLOCK_VALUE=12288000 
-	HSI_VALUE=64000000 
-	LSI_VALUE=32000 
-	VDD_VALUE=3300 
+set(MX_Defines_Syms
+	USE_FULL_LL_DRIVER
+	USE_HAL_DRIVER
 	STM32H533xx
     $<$<CONFIG:Debug>:DEBUG>
 )
@@ -21,6 +13,7 @@ set(MX_Defines_Syms
 set(MX_Include_Dirs
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Inc
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Inc/Legacy
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/CMSIS/Device/ST/STM32H5xx/Include
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/CMSIS/Include
 )
@@ -30,9 +23,9 @@ set(MX_Application_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/gpio.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/gpdma.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/icache.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/usart.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/stm32h5xx_it.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/stm32h5xx_hal_msp.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/sysmem.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Src/syscalls.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../startup_stm32h533xx.s
@@ -46,9 +39,21 @@ set(STM32_Drivers_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_ll_gpio.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_ll_dma.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_ll_rcc.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_ll_icache.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_rcc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_rcc_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_flash.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_flash_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_gpio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_pwr.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_pwr_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_cortex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_exti.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_ll_pwr.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_ll_usart.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart_ex.c
 )
 
 # Drivers Midllewares
@@ -60,10 +65,10 @@ set(MX_LINK_DIRS
 
 )
 # Project static libraries
-set(MX_LINK_LIBS 
+set(MX_LINK_LIBS
     STM32_Drivers
     ${TOOLCHAIN_LINK_LIBRARIES}
-    
+
 )
 # Interface library for includes and symbols
 add_library(stm32cubemx INTERFACE)
@@ -83,7 +88,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${MX_Application_Src})
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE ${MX_LINK_DIRS})
 
 # Add libraries to the project
-target_link_libraries(${CMAKE_PROJECT_NAME} ${MX_LINK_LIBS})
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${MX_LINK_LIBS})
 
 # Add the map file to the list of files to be removed with 'clean' target
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES ADDITIONAL_CLEAN_FILES ${CMAKE_PROJECT_NAME}.map)
